@@ -1,7 +1,7 @@
-# Make a calculator!
+# :1234: Make a calculator!
 *Consider all the lines in italic are bonus features. You can do it for fun but they are not required :)*
 
-## Expected UI
+## :art: Expected UI
 We expect the following components for our app
 
 **The action buttons:**  
@@ -22,7 +22,7 @@ We expect the following components for our app
 *[I] 1 input to make a search*  
 *[J] 1 div to display a list*
 
-## Expected features
+## :gear: Expected features
 
 :one: As a user, when I press on a compute button, I should see [F] updated with the matching value  
 :two: As a user, when I press on [B], I should see the right result on [G] for the current compute displayed on [F]. If the compute is not achievable, I should see a label "error" on [G]  
@@ -32,11 +32,11 @@ We expect the following components for our app
 :five: *As an admin, when I press [H] I should see the list of all the past computes on [J]*  
 :six: *As an admin, when I fill in [I] and I press ENTER, I should see the list of results matching the search on [J].*
 
-## Instructions
+## :white_check_mark: Instructions
 
 - Create a repo (no mention of payfit) on your github  
 - Create a branch to start the challenge.  
 - Create a pull request with this branch  
 - When you're done, ping us to let us know the PR is ready for review. We'll get back to you quickly :)  
 
-==> Please use **React/redux** as a stack base, you're free to use anything else for the challenge
+:warning: Please use **React/redux** as a stack base, you're free to use anything else for the challenge
