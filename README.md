@@ -34,9 +34,11 @@ We expect the following components for our app
 
 ## :white_check_mark: Instructions
 
-- Create a repo (no mention of payfit) on your github  
-- Create a branch to start the challenge.  
-- Create a pull request with this branch  
+- Create a new repo on your personal GitHub (up to you for the name) without any mention of payfit  
+:warning: As this repo is a shared resource for candidates, please **do not fork** directly this repo  
+- Create a branch to start the challenge  
+- Create a local pull request with this branch on your repo  
 - When you're done, ping us to let us know the PR is ready for review. We'll get back to you quickly :)  
 
-:warning: Please use **React/redux** as a stack base, you're free to use anything else for the challenge
+:warning: Please use **React/redux** as a stack base, you're free to use anything else for the challenge  
+:warning: Please remember no fork will be allowed
