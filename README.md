@@ -27,7 +27,7 @@ We expect the following components for our app
 :one: As a user, when I press on a compute button, I should see [F] updated with the matching value  
 :two: As a user, when I press on [B], I should see the right result on [G] for the current compute displayed on [F]. If the compute is not achievable, I should see a label "error" on [G]  
 :three: As a user, when I press [A], I should see [F] and [G] empty.  
-:four: As a developer, when I press SPACE, I should see random computes achieved as if hundreds on monkeys were using the calculator at the same time but with real computes (no error made).
+:four: As a developer, when I press SPACE, I should see random computes achieved as if hundreds of monkeys were using the calculator at the same time but with real computes (no error made).
 
 :five: *As an admin, when I press [H] I should see the list of all the past computes on [J]*  
 :six: *As an admin, when I fill in [I] and I press ENTER, I should see the list of results matching the search on [J].*
