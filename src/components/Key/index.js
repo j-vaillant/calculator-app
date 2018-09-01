@@ -18,9 +18,9 @@ const Text = styled.span`
  color: ${props => props.bg && '#FFF'};
 `;
 
-const Key = ({ children: text, primary = false, big = false, bg,  merged = false }) => (
-  <Box merged={merged} bg={bg}>
-    <Text {...{ big, primary, bg}}>{text}</Text>
+const Key = ({ children: text, onClick, primary = false, big = false, bg,  merged = false }) => (
+  <Box onClick={onClick} merged={merged} bg={bg}>
+    <Text {...{ big, primary, bg }}>{text}</Text>
   </Box>
 );
 
