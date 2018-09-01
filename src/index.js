@@ -1,6 +1,14 @@
 import { render } from 'react-dom';
 import React from 'react';
+import { Provider } from 'react-redux';
 
-import App from './app.js'
+import App from './app';
 
-render(<App />, document.querySelector('#root'));
+import { initializeStore } from './state/store';
+
+render(
+  <Provider store={initializeStore()}>
+    <App />
+  </Provider>,
+  document.querySelector('#root')
+);
