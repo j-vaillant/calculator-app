@@ -10,5 +10,5 @@ render(
   <Provider store={initializeStore()}>
     <App />
   </Provider>,
-  document.querySelector('#root')
+  document.querySelector('#root'),
 );
