@@ -76,7 +76,7 @@ const Calculator = class Calculator extends Component {
             <Key onClick={this.onCommandPressed(8)}>8</Key>
             <Key onClick={this.onCommandPressed(5)}>5</Key>
             <Key onClick={this.onCommandPressed(2)}>2</Key>
-            <Key></Key>
+            <Key disabled></Key>
             </Column>
             <Column>
             <Key primary onClick={this.onCommandPressed("\u00F7")}> &divide;</Key>
@@ -86,7 +86,7 @@ const Calculator = class Calculator extends Component {
             <Key big onClick={this.onCommandPressed('.')}>.</Key>
             </Column>
             <Column>
-            <Key></Key>
+            <Key disabled></Key>
             <Key onClick={this.onCommandPressed('+')} primary>+</Key>
             <Key onClick={this.onCommandPressed('-')} primary>-</Key>
             <Key primary onClick={this.compute} merged bg={'#2ABAE9'}>=</Key>
