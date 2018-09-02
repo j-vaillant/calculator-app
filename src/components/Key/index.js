@@ -31,7 +31,7 @@ Key.propTypes = {
   primary: Proptypes.bool,
   big: Proptypes.bool,
   bg: Proptypes.string,
-  merged: Proptypes.string,
+  merged: Proptypes.bool,
   disabled: Proptypes.bool,
 };
 

@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 
 import Key from './components/Key';
 import Label from './components/Label';
+import Toggler from './components/Toggler';
 
 import calculatorActions from './state/actions';
 
@@ -24,7 +25,7 @@ const Container = styled.div`
 
 const Calc = styled.div`
   display: flex;
-  flex: 1 0 500px;
+  flex: 1 0 480px;
   background-color: #D3D0D0;
 `;
 
@@ -48,7 +49,12 @@ const Column = styled.div`
 
 const Calculator = class Calculator extends Component {
   onCommandPressed = (value) => () => {
-    this.props.dispatch(calculatorActions.type(value))
+    if (value !== this.props.mode) {
+      this.props.dispatch(calculatorActions.switchMode(value))
+    }
+  }
+  onModeChanged = (mode) => {
+    this.props.dispatch(calculatorActions.switchMode(mode))
   }
   compute = () => {
     this.props.dispatch(calculatorActions.compute())
@@ -92,9 +98,10 @@ const Calculator = class Calculator extends Component {
             <Key primary onClick={this.compute} merged bg={'#2ABAE9'}>=</Key>
             </Column>
         </Calc>
+        <Toggler onClick={this.onModeChanged} mode={this.props.mode} />
         </Container>
     );
   }
 };
 
-export default connect(({input, result}) => ({input, result}))(Calculator);
+export default connect(({input, result, mode}) => ({input, result, mode}))(Calculator);

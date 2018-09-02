@@ -62,7 +62,11 @@ const calculator = (state = initialState, action) => {
           result: 'Error',
         };
       }
-
+    case calculatorActions.SWITCH_MODE:
+      return {
+        ...state,
+        mode: action.mode,
+      };
     default:
       return state;
   }
