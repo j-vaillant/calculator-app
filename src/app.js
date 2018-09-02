@@ -60,7 +60,9 @@ const Calculator = class Calculator extends Component {
     }
   }
   compute = () => {
-    this.props.compute()
+    if (this.props.input) {
+      this.props.compute()
+    }
   }
   clear = () => {
     this.props.clear()
