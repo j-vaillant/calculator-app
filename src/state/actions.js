@@ -1,9 +1,17 @@
 const calculatorActions = {
-  TYPE_NUMBER: 'TYPE_NUMBER',
-  typeNumber: (digit) => ({
-    digit,
-    type: calculatorActions.TYPE_NUMBER,
+  TYPE: 'TYPE',
+  type: value => ({
+    value,
+    type: calculatorActions.TYPE,
+  }),
+  CLEAR: 'CLEAR',
+  clear: () => ({
+    type: calculatorActions.CLEAR,
+  }),
+  COMPUTE: 'COMPUTE',
+  compute: () => ({
+    type: calculatorActions.COMPUTE,
   }),
 };
 
-export { calculatorActions }
+export default calculatorActions;

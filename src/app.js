@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import Key from './components/Key';
 import Label from './components/Label';
 
-import { calculatorActions } from './state/actions';
+import calculatorActions from './state/actions';
 
 const Container = styled.div`
   position: absolute;
@@ -47,43 +47,49 @@ const Column = styled.div`
 
 
 const Calculator = class Calculator extends Component {
-  onDigitTyped = (value) => () => {
-    this.props.dispatch(calculatorActions.typeNumber(value))
+  onCommandPressed = (value) => () => {
+    this.props.dispatch(calculatorActions.type(value))
+  }
+  compute = () => {
+    this.props.dispatch(calculatorActions.compute())
+  }
+  clear = () => {
+    this.props.dispatch(calculatorActions.clear())
   }
   render() {
     return (
         <Container>
         <Header>
         <Label text={this.props.input} />
-        <Label text='10' align='right'/>
+        <Label text={this.props.result} align='right'/>
         </Header>
         <Calc>
             <Column>
-            <Key primary>C</Key>
-            <Key onClick={this.onDigitTyped(7)}>7</Key>
-            <Key onClick={this.onDigitTyped(4)}>4</Key>
-            <Key onClick={this.onDigitTyped(1)}>1</Key>
-            <Key onClick={this.onDigitTyped(0)}>0</Key>
+            <Key primary onClick={this.clear}>C</Key>
+            <Key onClick={this.onCommandPressed(7)}>7</Key>
+            <Key onClick={this.onCommandPressed(4)}>4</Key>
+            <Key onClick={this.onCommandPressed(1)}>1</Key>
+            <Key onClick={this.onCommandPressed(0)}>0</Key>
             </Column>
             <Column>
-            <Key primary>&times;</Key>
-            <Key onClick={this.onDigitTyped(8)}>8</Key>
-            <Key onClick={this.onDigitTyped(5)}>5</Key>
-            <Key onClick={this.onDigitTyped(2)}>2</Key>
+            <Key primary onClick={this.onCommandPressed("\u00D7")}>&times;</Key>
+            <Key onClick={this.onCommandPressed(8)}>8</Key>
+            <Key onClick={this.onCommandPressed(5)}>5</Key>
+            <Key onClick={this.onCommandPressed(2)}>2</Key>
             <Key></Key>
             </Column>
             <Column>
-            <Key primary> &divide;</Key>
-            <Key onClick={this.onDigitTyped(9)}>9</Key>
-            <Key onClick={this.onDigitTyped(6)}>6</Key>
-            <Key onClick={this.onDigitTyped(3)}>3</Key>
-            <Key big>.</Key>
+            <Key primary onClick={this.onCommandPressed("\u00F7")}> &divide;</Key>
+            <Key onClick={this.onCommandPressed(9)}>9</Key>
+            <Key onClick={this.onCommandPressed(6)}>6</Key>
+            <Key onClick={this.onCommandPressed(3)}>3</Key>
+            <Key big onClick={this.onCommandPressed('.')}>.</Key>
             </Column>
             <Column>
             <Key></Key>
-            <Key primary>+</Key>
-            <Key primary>-</Key>
-            <Key primary merged bg={'#2ABAE9'}>=</Key>
+            <Key onClick={this.onCommandPressed('+')} primary>+</Key>
+            <Key onClick={this.onCommandPressed('-')} primary>-</Key>
+            <Key primary onClick={this.compute} merged bg={'#2ABAE9'}>=</Key>
             </Column>
         </Calc>
         </Container>
@@ -91,4 +97,4 @@ const Calculator = class Calculator extends Component {
   }
 };
 
-export default connect(({input}) => ({input}))(Calculator);
+export default connect(({input, result}) => ({input, result}))(Calculator);

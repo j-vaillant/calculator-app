@@ -14,7 +14,7 @@ const Box = styled.div`
 
 const Text = styled.span`
  color: ${props => props.primary ? '#2ABAE9' : '#271D1D'};
- font-size: ${props => props.big ? '6rem' : '3rem'};
+ font-size: ${props => props.big ? '5rem' : '3rem'};
  color: ${props => props.bg && '#FFF'};
 `;
 
