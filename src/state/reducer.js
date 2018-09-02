@@ -35,8 +35,8 @@ const calculator = (state = initialState, action) => {
         };
       }
 
-      // = previosuly typed and another operator is sent
-      // means computes is not finished yet...
+      // = previously typed and another operator is sent
+      // means computes are not finished yet...
       if (state.tmpValue && IS_OPERATOR.test(action.value)) {
         return {
           ...state,
