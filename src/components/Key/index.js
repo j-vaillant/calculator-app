@@ -4,8 +4,9 @@ import styled from 'styled-components';
 
 const Box = styled.div`
  display: flex;
- border: 1px solid rgba(165, 165, 165, 0.1);
  flex: ${props => props.merged ? '2 0' : '1 0'};
+
+border: 1px solid rgba(165, 165, 165, 0.1);
  justify-content: center;
  align-items: center;
  cursor: ${props => props.disabled ? 'default' : 'pointer' };

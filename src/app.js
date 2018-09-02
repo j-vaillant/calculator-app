@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
 
 
 import Key from './components/Key';
@@ -17,31 +18,33 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
 
-  transform: translate(-50%, -50%);
-
   width: 800px;
   height: 600px;
+
+  transform: translate(-50%, -50%);
 `;
 
 const Calc = styled.div`
   display: flex;
   flex: 1 0 480px;
+
   background-color: #D3D0D0;
 `;
 
 const Header = styled.div`
-  flex: 1 0 100px; 
-  background-color: transparent;
   display: flex;
+  flex: 1 0 100px; 
   flex-direction: column;
+
   border: 1px solid rgba(0,0,0,0.1);
   box-sizing: border-box;
   padding: 15px;
+
+  background-color: transparent;
 `;
 
 const Column = styled.div`
   display: flex;
-  
   flex-direction: column
   flex: 1 0 auto;
 `;
@@ -49,18 +52,29 @@ const Column = styled.div`
 
 const Calculator = class Calculator extends Component {
   onCommandPressed = (value) => () => {
-    if (value !== this.props.mode) {
-      this.props.dispatch(calculatorActions.switchMode(value))
-    }
+    this.props.type(value)
   }
   onModeChanged = (mode) => {
-    this.props.dispatch(calculatorActions.switchMode(mode))
+    if (mode !== this.props.mode) {
+      this.props.switchMode(mode)
+    }
   }
   compute = () => {
-    this.props.dispatch(calculatorActions.compute())
+    this.props.compute()
   }
   clear = () => {
-    this.props.dispatch(calculatorActions.clear())
+    this.props.clear()
+  }
+  onKeyPressed = (e) => {
+    if(e.keyCode == 32 && this.props.mode === 'dev'){
+        this.props.monkeyType()
+    }
+  }
+  componentDidMount() {
+    window.addEventListener('keypress', this.onKeyPressed)
+  }
+   componentWillUnMount() {
+    window.removeEventListener('keypress', this.onKeyPressed)
   }
   render() {
     return (
@@ -104,4 +118,15 @@ const Calculator = class Calculator extends Component {
   }
 };
 
-export default connect(({input, result, mode}) => ({input, result, mode}))(Calculator);
+function mapDispatchToProps(dispatch) {
+   return bindActionCreators({
+        monkeyType: calculatorActions.monkeyType,
+        type: calculatorActions.type,
+        switchMode: calculatorActions.switchMode,
+        compute: calculatorActions.compute,
+        clear: calculatorActions.clear,
+    }, dispatch);
+}
+
+export default connect(({input, result, mode}) => ({input, result, mode}), mapDispatchToProps)(Calculator);
+export { Calculator as PureCalculator }

@@ -5,6 +5,7 @@ import styled from 'styled-components';
 const StyledLabel = styled.span`
 display: inline-block;
 flex 1 0;
+
 font-size: 2rem;
  text-align: ${props => props.align};
 `;
@@ -15,7 +16,7 @@ const Label = ({ text, align }) => (
 
 Label.propTypes = {
   align: Proptypes.string,
-  text: Proptypes.string.isRequired,
+  text: Proptypes.oneOfType([Proptypes.string, Proptypes.number]).isRequired
 };
 
 Label.defaultProps = {

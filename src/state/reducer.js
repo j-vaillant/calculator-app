@@ -6,9 +6,12 @@ import calculatorActions from './actions';
 const initialState = {
   mode: 'user',
   input: '',
+  tmpValue: null,
   result: '',
-  done: false,
 };
+
+const IS_DIGIT = /([0-9]){1}/;
+const IS_OPERATOR = /([\u00F7\u00D7\+\-]){1}/;
 
 const calculator = (state = initialState, action) => {
   switch (action.type) {
@@ -19,15 +22,37 @@ const calculator = (state = initialState, action) => {
           ...state,
           input: `${action.value}`,
           result: '',
+          tmpValue: null,
         };
       }
 
-      if (state.done) {
+      if (state.tmpValue && action.value === '.') {
+        return {
+          ...state,
+          input: '0.',
+          result: '',
+          tmpValue: null,
+        };
+      }
+
+      // = previosuly typed and another operator is sent
+      // means computes is not finished yet...
+      if (state.tmpValue && IS_OPERATOR.test(action.value)) {
+        return {
+          ...state,
+          input: `${state.tmpValue}${action.value}`,
+          tmpValue: null,
+        };
+      }
+
+      // = previously typed and new digit is sent
+      // means we start a new compute
+      if (state.tmpValue && IS_DIGIT.test(action.value)) {
         return {
           ...state,
           input: `${action.value}`,
-          done: false,
           result: '',
+          tmpValue: null,
         };
       }
 
@@ -40,20 +65,25 @@ const calculator = (state = initialState, action) => {
         ...state,
         input: '',
         result: '',
+        tmpValue: null,
       };
     case calculatorActions.COMPUTE:
       try {
-        const computedValue = stringMath(
+        let computedValue = stringMath(
           state.input
             .replace('\u00F7', '/')
             .replace('\u00D7', '*'),
         );
 
+        if (state.tmpValue !== null) {
+          computedValue += state.tmpValue;
+        }
+
         return {
           ...state,
           input: '',
           result: computedValue,
-          done: true,
+          tmpValue: computedValue,
         };
       } catch (e) {
         return {
