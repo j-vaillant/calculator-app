@@ -14,6 +14,14 @@ const calculator = (state = initialState, action) => {
   switch (action.type) {
     case calculatorActions.TYPE:
 
+      if (state.result === 'Error') {
+        return {
+          ...state,
+          input: `${action.value}`,
+          result: '',
+        };
+      }
+
       if (state.done) {
         return {
           ...state,

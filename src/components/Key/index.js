@@ -8,7 +8,7 @@ const Box = styled.div`
  flex: ${props => props.merged ? '2 0' : '1 0'};
  justify-content: center;
  align-items: center;
- cursor: pointer;
+ cursor: ${props => props.disabled ? 'default' : 'pointer' };
  background-color: ${props => props.bg};
 `;
 
@@ -18,18 +18,32 @@ const Text = styled.span`
  color: ${props => props.bg && '#FFF'};
 `;
 
-const Key = ({ children: text, onClick, primary = false, big = false, bg,  merged = false }) => (
-  <Box onClick={onClick} merged={merged} bg={bg}>
+const Key = ({ children: text, onClick, primary, big, bg, disabled, merged }) => (
+  <Box onClick={onClick} merged={merged} disabled={disabled} bg={bg}>
     <Text {...{ big, primary, bg }}>{text}</Text>
   </Box>
 );
 
 Key.propTypes = {
   text: Proptypes.string,
+  children: Proptypes.string,
+  onClick: Proptypes.func,
+  primary: Proptypes.bool,
+  big: Proptypes.bool,
+  bg: Proptypes.string,
+  merged: Proptypes.string,
+  disabled: Proptypes.bool,
 };
 
 Key.defaultProps = {
   text: '',
+  children: '',
+  onClick: null,
+  primary: false,
+  big: false,
+  bg: null,
+  merged: false,
+  disabled: false,
 };
 
 export default Key;
