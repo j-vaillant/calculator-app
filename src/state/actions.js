@@ -12,6 +12,11 @@ const calculatorActions = {
   compute: () => ({
     type: calculatorActions.COMPUTE,
   }),
+  SWITCH_MODE: 'SWITCH_MODE',
+  switchMode: mode => ({
+    mode,
+    type: calculatorActions.SWITCH_MODE,
+  }),
 };
 
 export default calculatorActions;
