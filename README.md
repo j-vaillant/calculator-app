@@ -12,3 +12,14 @@ npm i //-> install JS packages
 npm run start //-> run sandbox on http://localhost:9000
 
 ```
+
+# Extra commands
+
+* tests
+
+```
+npm run test 
+
+```
+
+
