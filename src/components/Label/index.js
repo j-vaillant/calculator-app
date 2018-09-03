@@ -5,6 +5,7 @@ import styled from 'styled-components';
 const StyledLabel = styled.span`
 display: inline-block;
 flex 1 0;
+min-width: 25px;
 
 font-size: 2rem;
  text-align: ${props => props.align};
