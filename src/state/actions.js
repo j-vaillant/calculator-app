@@ -12,6 +12,15 @@ function* randomOperator() {
   }
 }
 
+function monkey (dispatch) {
+  dispatch((calculatorActions.type(genNumber.next().value)));
+  setTimeout(() => dispatch((calculatorActions.type(genNumber.next().value))), 100);
+  setTimeout(() => dispatch((calculatorActions.type(genOperator.next().value))), 200);
+  setTimeout(() => dispatch((calculatorActions.type(genNumber.next().value))), 300);
+  setTimeout(() => dispatch((calculatorActions.type(genNumber.next().value))), 400);
+  setTimeout(() => dispatch((calculatorActions.compute())), 500);
+}
+
 const genNumber = randomValue();
 const genOperator = randomOperator();
 
@@ -35,13 +44,10 @@ const calculatorActions = {
     type: calculatorActions.SWITCH_MODE,
   }),
   monkeyType: () => (dispatch) => {
+    monkey(dispatch);
+    
     const interval = setInterval(() => {
-      dispatch((calculatorActions.type(genNumber.next().value)));
-      setTimeout(() => dispatch((calculatorActions.type(genNumber.next().value))), 100);
-      setTimeout(() => dispatch((calculatorActions.type(genOperator.next().value))), 200);
-      setTimeout(() => dispatch((calculatorActions.type(genNumber.next().value))), 300);
-      setTimeout(() => dispatch((calculatorActions.type(genNumber.next().value))), 400);
-      setTimeout(() => dispatch((calculatorActions.compute())), 500);
+     monkey(dispatch)
     }, 1500);
 
     window.setTimeout(() => {
