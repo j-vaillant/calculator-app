@@ -52,7 +52,7 @@ const Column = styled.div`
 
 const Calculator = class Calculator extends Component {
   onCommandPressed = (value) => () => {
-    this.props.type(value)
+    this.props.analyseType(value)
   }
   onModeChanged = (mode) => {
     if (mode !== this.props.mode) {
@@ -123,7 +123,7 @@ const Calculator = class Calculator extends Component {
 function mapDispatchToProps(dispatch) {
    return bindActionCreators({
         monkeyType: calculatorActions.monkeyType,
-        type: calculatorActions.type,
+        analyseType: calculatorActions.analyseType,
         switchMode: calculatorActions.switchMode,
         compute: calculatorActions.compute,
         clear: calculatorActions.clear,
