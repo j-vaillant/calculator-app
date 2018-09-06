@@ -1,4 +1,6 @@
 const OPERATORS = ['*', '/', '+', '-'];
+const IS_DIGIT = /([0-9]){1}/;
+const IS_OPERATOR = /([\u00F7\u00D7\+\-]){1}/;
 
 function* randomValue() {
   while (true) {
@@ -34,15 +36,46 @@ const calculatorActions = {
   clear: () => ({
     type: calculatorActions.CLEAR,
   }),
+  RESET: 'RESET',
+  reset: (value) => ({
+    value,
+    type: calculatorActions.RESET,
+  }),
   COMPUTE: 'COMPUTE',
   compute: () => ({
     type: calculatorActions.COMPUTE,
+  }),
+  CONTINUE: 'CONTINUE',
+  continue: (value) => ({
+    value,
+    type: calculatorActions.CONTINUE,
   }),
   SWITCH_MODE: 'SWITCH_MODE',
   switchMode: mode => ({
     mode,
     type: calculatorActions.SWITCH_MODE,
   }),
+  analyseType: (value) => (dispatch, getState) => {
+    const { result, subResult } = getState();
+
+    if (result === 'Error') {
+      return dispatch(calculatorActions.reset(value))
+    }
+
+    // "="" previously typed and another operator is sent
+    // means computes are not finished yet...
+    if (subResult && IS_OPERATOR.test(value)) {
+      return dispatch(calculatorActions.continue(value))
+    }
+    
+    // "="" previously typed and new digit is sent
+    // means we start a new compute
+    if (subResult && IS_DIGIT.test(value)) {
+      return dispatch(calculatorActions.reset(value))
+    }
+
+    return  dispatch(calculatorActions.type(value))
+  },
   monkeyType: () => (dispatch) => {
     monkey(dispatch);
     
